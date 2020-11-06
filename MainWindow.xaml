@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AirMite"
         mc:Ignorable="d"
-        Title="L Air Mite" Height="800" Width="800">
+        Title="L Air Mite" Height="800" Width="1248">
 
 
     <Grid>
@@ -13,11 +13,13 @@
         <Button x:Name="grappeA1" Content="Démarrer la partie" HorizontalAlignment="Left" Margin="240,585,0,0" VerticalAlignment="Top" Width="299" Height="62" Click="Button_Click"/>
         <Label x:Name="grappeA2" Content="Solitaire" HorizontalAlignment="Left" Height="82" Margin="301,117,0,0" VerticalAlignment="Top" Width="184" FontSize="48"/>
         <Image x:Name="grappeA3" HorizontalAlignment="Left" Height="219" Margin="288,204,0,0" VerticalAlignment="Top" Width="222" Source="logo.bmp"/>
+        <Canvas x:Name="gappesB">
         <Image x:Name="grappeB1" HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="120" Margin="19,10,0,0" Source="placeholder.bmp"/>
         <Image x:Name="grappeB2" HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="120" Margin="260,10,0,0" Source="placeholder.bmp"/>
         <Image x:Name="grappeB3" HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="120" Margin="385,10,0,0" Source="placeholder.bmp"/>
         <Image x:Name="grappeB4" HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="120" Margin="510,10,0,0" Source="placeholder.bmp"/>
         <Image x:Name="grappeB5" HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="120" Margin="635,10,0,0" Source="placeholder.bmp"/>
+        </Canvas>
         <Image x:Name="grappeB6" HorizontalAlignment="Left" Height="81" Margin="37,64,0,0" VerticalAlignment="Top" Width="75" Source="logo.bmp"/>
 
     </Grid>
