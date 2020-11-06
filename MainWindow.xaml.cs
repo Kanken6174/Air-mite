@@ -27,14 +27,12 @@ namespace AirMite
         public MainWindow()
         {
             InitializeComponent();
-            grappeB1.Visibility = Visibility.Collapsed;
-            grappeB2.Visibility = Visibility.Collapsed;
-            grappeB3.Visibility = Visibility.Collapsed;
-            grappeB4.Visibility = Visibility.Collapsed;
-            grappeB5.Visibility = Visibility.Collapsed;
+            grappesX.Visibility = Visibility.Collapsed;
             grappeB6.Visibility = Visibility.Collapsed;
+            gappesB.Visibility = Visibility.Collapsed;
 
-            foreach (object obj in gappesB.Children)
+
+            foreach (object obj in gappesB.Children) // tires for each object in children of canvas named grappesB
             {
                 try
                 {
@@ -56,55 +54,57 @@ namespace AirMite
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Hides "play" menu
+            //Hides "play" menu on click of button
             grappeA1.Visibility = Visibility.Collapsed;
             grappeA2.Visibility = Visibility.Collapsed;
             grappeA3.Visibility = Visibility.Collapsed;
 
-            grappeB1.Visibility = Visibility.Visible;
-            grappeB2.Visibility = Visibility.Visible;
-            grappeB3.Visibility = Visibility.Visible;
-            grappeB4.Visibility = Visibility.Visible;
-            grappeB5.Visibility = Visibility.Visible;
+            grappesX.Visibility = Visibility.Visible;
+            gappesB.Visibility = Visibility.Visible;
             grappeB6.Visibility = Visibility.Visible;
         }
 
-        void myimg_LostMouseCapture(object sender, MouseEventArgs e)
-{
-    ((Image)sender).ReleaseMouseCapture();
-}
+        void NvTirage(object sender, RoutedEventArgs e)
+        {
 
-void myimg_TextInput(object sender, TextCompositionEventArgs e)
-{
-    ((Image)sender).ReleaseMouseCapture();
-}
+        }
 
-void myimg_MouseUp(object sender, MouseButtonEventArgs e)
-{
-    ((Image)sender).ReleaseMouseCapture();
-}
+        void myimg_LostMouseCapture(object sender, MouseEventArgs e) 
+        {
+            ((Image)sender).ReleaseMouseCapture();
+        }
 
-void myimg_MouseMove(object sender, MouseEventArgs e)
-{
-    if (((Image)sender).IsMouseCaptured)
-    {
-        Point mouseCurrent = e.GetPosition(null);
-        double Left = mouseCurrent.X - canvasLeft;
-        double Top = mouseCurrent.Y - canvasTop;
-        ((Image)sender).SetValue(Canvas.LeftProperty, canvasLeft + Left);
-        ((Image)sender).SetValue(Canvas.TopProperty, canvasTop + Top);
-        canvasLeft = Canvas.GetLeft(((Image)sender));
-        canvasTop = Canvas.GetTop(((Image)sender));
-    }
-}
+        void myimg_TextInput(object sender, TextCompositionEventArgs e)
+        {
+            ((Image)sender).ReleaseMouseCapture();
+        }
 
-void myimg_MouseDown(object sender, MouseButtonEventArgs e)
-{
-    mouseClick = e.GetPosition(null);
-    canvasLeft = Canvas.GetLeft(((Image)sender));
-    canvasTop = Canvas.GetTop(((Image)sender));
-    ((Image)sender).CaptureMouse();
-}
-    }
-}
+        void myimg_MouseUp(object sender, MouseButtonEventArgs e) // disables Hook on mouse position
+        {
+            ((Image)sender).ReleaseMouseCapture();
+        }
+
+        void myimg_MouseMove(object sender, MouseEventArgs e) // changes variables accordingly if mouse moves
+        {
+            if (((Image)sender).IsMouseCaptured)
+            {
+                Point mouseCurrent = e.GetPosition(null);
+                double Left = mouseCurrent.X - canvasLeft - 50;
+                double Top = mouseCurrent.Y - canvasTop - 100;
+                ((Image)sender).SetValue(Canvas.LeftProperty, canvasLeft + Left);
+                ((Image)sender).SetValue(Canvas.TopProperty, canvasTop + Top);
+                canvasLeft = Canvas.GetLeft(((Image)sender));
+                canvasTop = Canvas.GetTop(((Image)sender));
+            }
+        }
+
+        void myimg_MouseDown(object sender, MouseButtonEventArgs e) // checks for mouse click on children of canvas (drag)
+        {
+            mouseClick = e.GetPosition(null);
+            canvasLeft = Canvas.GetLeft(((Image)sender));   // get left coordinates of clicked picture
+            canvasTop = Canvas.GetTop(((Image)sender));     // get top coordinates of clicked picture
+            ((Image)sender).CaptureMouse();
+        }
+            }
+        }
 
