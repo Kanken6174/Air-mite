@@ -23,11 +23,27 @@ namespace AirMite
         public MainWindow()
         {
             InitializeComponent();
+            grappeB1.Visibility = Visibility.Collapsed;
+            grappeB2.Visibility = Visibility.Collapsed;
+            grappeB3.Visibility = Visibility.Collapsed;
+            grappeB4.Visibility = Visibility.Collapsed;
+            grappeB5.Visibility = Visibility.Collapsed;
+            grappeB6.Visibility = Visibility.Collapsed;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //Hides "play" menu
+            grappeA1.Visibility = Visibility.Collapsed;
+            grappeA2.Visibility = Visibility.Collapsed;
+            grappeA3.Visibility = Visibility.Collapsed;
 
+            grappeB1.Visibility = Visibility.Visible;
+            grappeB2.Visibility = Visibility.Visible;
+            grappeB3.Visibility = Visibility.Visible;
+            grappeB4.Visibility = Visibility.Visible;
+            grappeB5.Visibility = Visibility.Visible;
+            grappeB6.Visibility = Visibility.Visible;
         }
     }
 }
