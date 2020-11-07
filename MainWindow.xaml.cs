@@ -24,15 +24,17 @@ namespace AirMite
         private Point mouseClick;
         private double canvasLeft;
         private double canvasTop;
+        private double newX;
+        private double newY;
+        private bool isflipped;
+        private int clonecount = 0;
         public MainWindow()
         {
             InitializeComponent();
-            grappesX.Visibility = Visibility.Collapsed;
-            grappeB6.Visibility = Visibility.Collapsed;
-            gappesB.Visibility = Visibility.Collapsed;
 
 
-            foreach (object obj in gappesB.Children) // tires for each object in children of canvas named grappesB
+
+          /**  foreach (object obj in gappesB.Children) // tires for each object in children of canvas named grappesB
             {
                 try
                 {
@@ -45,23 +47,21 @@ namespace AirMite
                     img.SetValue(Canvas.LeftProperty, 0.0);
                     img.SetValue(Canvas.TopProperty, 0.0);
                 }
-                catch
+                catch// (notacardposition e) TODO: check if card landed on a correct poistion, else, put it back where it was before!
                 {
                     //do something
                 }
-            }
+            }*/
+
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //Hides "play" menu on click of button
-            grappeA1.Visibility = Visibility.Collapsed;
-            grappeA2.Visibility = Visibility.Collapsed;
-            grappeA3.Visibility = Visibility.Collapsed;
 
-            grappesX.Visibility = Visibility.Visible;
-            gappesB.Visibility = Visibility.Visible;
-            grappeB6.Visibility = Visibility.Visible;
+        private void Reset_clicked(object sender, RoutedEventArgs e)
+        {
+            clonecount++;
+            Uri resourceUri = new Uri(clonecount+".png", UriKind.Relative);
+            ditto.Source = new BitmapImage(resourceUri);
         }
 
         void NvTirage(object sender, RoutedEventArgs e)
@@ -89,8 +89,8 @@ namespace AirMite
             if (((Image)sender).IsMouseCaptured)
             {
                 Point mouseCurrent = e.GetPosition(null);
-                double Left = mouseCurrent.X - canvasLeft - 50;
-                double Top = mouseCurrent.Y - canvasTop - 100;
+                double Left = mouseCurrent.X - canvasLeft - 50; // yes i know substracting the card center afterwards is ugly,
+                double Top = mouseCurrent.Y - canvasTop - 100;  // but it'll work for now
                 ((Image)sender).SetValue(Canvas.LeftProperty, canvasLeft + Left);
                 ((Image)sender).SetValue(Canvas.TopProperty, canvasTop + Top);
                 canvasLeft = Canvas.GetLeft(((Image)sender));
@@ -105,6 +105,6 @@ namespace AirMite
             canvasTop = Canvas.GetTop(((Image)sender));     // get top coordinates of clicked picture
             ((Image)sender).CaptureMouse();
         }
-            }
-        }
+    }
+}
 

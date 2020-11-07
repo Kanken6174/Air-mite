@@ -141,5 +141,60 @@
   <ItemGroup>
     <Resource Include="placeholder.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="0.png" />
+    <Resource Include="1.png" />
+    <Resource Include="10.png" />
+    <Resource Include="11.png" />
+    <Resource Include="12.png" />
+    <Resource Include="13.png" />
+    <Resource Include="14.png" />
+    <Resource Include="15.png" />
+    <Resource Include="16.png" />
+    <Resource Include="17.png" />
+    <Resource Include="18.png" />
+    <Resource Include="19.png" />
+    <Resource Include="2.png" />
+    <Resource Include="20.png" />
+    <Resource Include="21.png" />
+    <Resource Include="22.png" />
+    <Resource Include="23.png" />
+    <Resource Include="24.png" />
+    <Resource Include="25.png" />
+    <Resource Include="26.png" />
+    <Resource Include="27.png" />
+    <Resource Include="28.png" />
+    <Resource Include="29.png" />
+    <Resource Include="3.png" />
+    <Resource Include="30.png" />
+    <Resource Include="31.png" />
+    <Resource Include="32.png" />
+    <Resource Include="33.png" />
+    <Resource Include="34.png" />
+    <Resource Include="35.png" />
+    <Resource Include="36.png" />
+    <Resource Include="37.png" />
+    <Resource Include="38.png" />
+    <Resource Include="39.png" />
+    <Resource Include="4.png" />
+    <Resource Include="40.png" />
+    <Resource Include="41.png" />
+    <Resource Include="42.png" />
+    <Resource Include="43.png" />
+    <Resource Include="44.png" />
+    <Resource Include="45.png" />
+    <Resource Include="46.png" />
+    <Resource Include="47.png" />
+    <Resource Include="48.png" />
+    <Resource Include="49.png" />
+    <Resource Include="5.png" />
+    <Resource Include="50.png" />
+    <Resource Include="51.png" />
+    <Resource Include="52.png" />
+    <Resource Include="6.png" />
+    <Resource Include="7.png" />
+    <Resource Include="8.png" />
+    <Resource Include="9.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

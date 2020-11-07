@@ -10,22 +10,36 @@
 
 
     <Grid>
-
-        <Button x:Name="grappeA1" Content="Démarrer la partie" HorizontalAlignment="Left" Margin="485,544,0,0" VerticalAlignment="Top" Width="299" Height="62" Click="Button_Click"/>
-        <Label x:Name="grappeA2" Content="Solitaire" HorizontalAlignment="Left" Height="82" Margin="546,76,0,0" VerticalAlignment="Top" Width="184" FontSize="48"/>
-        <Image x:Name="grappeA3" HorizontalAlignment="Left" Height="219" Margin="533,163,0,0" VerticalAlignment="Top" Width="222" Source="logo.bmp"/>
-        <Button x:Name="grappesX" Margin="10,10,1135,479" HorizontalAlignment="Left" VerticalAlignment="Top" Click="NvTirage">
-            <Image Source="placeholder.bmp"/>
+        <Button x:Name="Mute" Width="55" Height="59" Margin="1207,620,10,10">
+            <Image Source="M0.png"/>
         </Button>
-        <Image x:Name="grappeB6" HorizontalAlignment="Left" Height="81" Margin="36,62,0,0" VerticalAlignment="Top" Width="75" Source="logo.bmp"/>
-        <Canvas x:Name="gappesB">
-            <Image x:Name="grappeB2" HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="120" Source="placeholder.bmp" Canvas.Left="664" Canvas.Top="10"/>
-            <Image x:Name="grappeB3" HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="120" Source="placeholder.bmp" Canvas.Left="789" Canvas.Top="10"/>
-            <Image x:Name="grappeB4" HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="120" Source="placeholder.bmp" Canvas.Left="914" Canvas.Top="10"/>
-            <Image x:Name="grappeB5" HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="120" Source="placeholder.bmp" Canvas.Left="1039" Canvas.Top="10"/>
-        </Canvas>
+
+        <Button x:Name="Reset" Width="55" Height="59" Margin="1207,556,10,74" Click="Reset_clicked">
+            <Image Source="r0.png"/>
+        </Button>
+
+        <Button x:Name="grappesX" Margin="10,10,1135,479" HorizontalAlignment="Left" VerticalAlignment="Top" Click="NvTirage">
+            <Image Source="0.png"/>
+        </Button>
+
+        <Image x:Name="grappeB7" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="664" Canvas.Top="10" Margin="767,181,0,0"/>
+        <Image x:Name="grappeB8" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="664" Canvas.Top="10" Margin="517,181,0,0"/>
+        <Image x:Name="grappeB2" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="664" Canvas.Top="10" Margin="642,181,0,0"/>
+        <Image x:Name="grappeB3" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="789" Canvas.Top="10" Margin="892,181,0,0"/>
+        <Image x:Name="grappeB4" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="914" Canvas.Top="10" Margin="1017,181,0,0"/>
+        <Image x:Name="grappeB5" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="1142,181,0,0"/>
+
+        <Image x:Name="grappeC1" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="1142,10,0,0"/>
+        <Image x:Name="grappeC2" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="1017,10,0,0"/>
+        <Image x:Name="grappeC3" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="892,10,0,0"/>
+        <Image x:Name="grappeC4" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="767,10,0,0"/>
+
+
+
+        <Image x:Name="grappeB9" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Margin="392,181,0,0"/>
         
+        <Image x:Name="ditto" HorizontalAlignment="Left" Height="100" Margin="826,476,0,0" VerticalAlignment="Top" Width="100" />
+
 
     </Grid>
-
 </Window>
