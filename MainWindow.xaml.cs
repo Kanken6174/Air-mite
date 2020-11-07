@@ -56,15 +56,27 @@ namespace AirMite
 
         }
 
-
-        private void Reset_clicked(object sender, RoutedEventArgs e)
+        private void NvTirage(object sender, RoutedEventArgs e)
         {
-            clonecount++;
-            Uri resourceUri = new Uri(clonecount+".png", UriKind.Relative);
-            ditto.Source = new BitmapImage(resourceUri);
+            int counter = 0;
+            Random rnd = new Random();
+            while (counter < 3)
+            {
+                counter++;
+                string name = "ditto" + counter;
+                clonecount = rnd.Next(1, 53);
+                if (clonecount > 52)
+                {
+                    clonecount = 0;
+                }
+
+                Uri resourceUri = new Uri(clonecount + ".png", UriKind.Relative);
+                (this.FindName(name) as Image).Source = new BitmapImage(resourceUri);
+            }
         }
 
-        void NvTirage(object sender, RoutedEventArgs e)
+
+            private void Reset_clicked(object sender, RoutedEventArgs e)
         {
 
         }

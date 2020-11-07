@@ -18,7 +18,7 @@
             <Image Source="r0.png"/>
         </Button>
 
-        <Button x:Name="grappesX" Margin="10,10,1135,479" HorizontalAlignment="Left" VerticalAlignment="Top" Click="NvTirage">
+        <Button x:Name="Piocher" Margin="10,10,1135,479" HorizontalAlignment="Left" VerticalAlignment="Top" Click="NvTirage">
             <Image Source="0.png"/>
         </Button>
 
@@ -37,8 +37,10 @@
 
 
         <Image x:Name="grappeB9" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Margin="392,181,0,0"/>
-        
-        <Image x:Name="ditto" HorizontalAlignment="Left" Height="100" Margin="826,476,0,0" VerticalAlignment="Top" Width="100" />
+
+        <Image x:Name="ditto1" HorizontalAlignment="Left" Height="171" Margin="142,10,0,0" VerticalAlignment="Top" Width="109" />
+        <Image x:Name="ditto2" HorizontalAlignment="Left" Height="171" Margin="256,10,0,0" VerticalAlignment="Top" Width="109" />
+        <Image x:Name="ditto3" HorizontalAlignment="Left" Height="171" Margin="370,10,0,0" VerticalAlignment="Top" Width="109" />
 
 
     </Grid>
