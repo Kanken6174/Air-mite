@@ -10,12 +10,12 @@
 
 
     <Grid>
-        <Button x:Name="Mute" Width="55" Height="59" Margin="1207,620,10,10">
-            <Image Source="M0.png"/>
+        <Button x:Name="Mute" Margin="1157,591,49,27">
+            <Image Source="M0.png" Canvas.ZIndex="1"/>
         </Button>
 
-        <Button x:Name="Reset" Width="55" Height="59" Margin="1207,556,10,74" Click="Reset_clicked">
-            <Image Source="r0.png"/>
+        <Button x:Name="Reset" Margin="1157,521,49,103" Click="Reset_clicked">
+            <Image Source="r0.png" Canvas.ZIndex="1"/>
         </Button>
 
         <Button x:Name="Piocher" Margin="1123,9,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="NvTirage" Width="135" Height="187">
@@ -28,6 +28,7 @@
         <Image x:Name="grappeB3" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="789" Canvas.Top="10" Margin="510,186,0,0"/>
         <Image x:Name="grappeB4" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="914" Canvas.Top="10" Margin="635,186,0,0"/>
         <Image x:Name="grappeB5" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="760,186,0,0"/>
+        <Image x:Name="grappeB9" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Margin="10,186,0,0"/>
 
         <Image x:Name="grappeC1" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="564,4,0,0" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
@@ -72,8 +73,8 @@
 
 
 
-        <Image x:Name="grappeB9" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Margin="10,186,0,0"/>
-        <Canvas x:Name="gappesB" Margin="778,10,162,509">
+
+        <Canvas x:Name="Tripletirage" Margin="778,10,162,509">
 
             <Image x:Name="ditto3" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="109" Canvas.Left="223" />
             <Image x:Name="ditto2" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="109" Canvas.Left="114" />
@@ -81,6 +82,25 @@
 
 
         </Canvas>
+        <Label x:Name="clause" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,503,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="c2" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,534,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="c3" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,565,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="c4" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,596,0,0" VerticalAlignment="Top"/>
+
+        <Rectangle x:Name="hit1" Fill="Transparent" Margin="10,186,1142,10" />
+        <Rectangle x:Name="hit2" Fill="Transparent" Margin="135,186,1017,10" />
+        <Rectangle x:Name="hit3" Fill="Transparent" Margin="260,186,892,10" />
+        <Rectangle x:Name="hit4" Fill="Transparent" Margin="385,186,767,10" />
+        <Rectangle x:Name="hit5" Fill="Transparent" Margin="510,186,642,10" />
+        <Rectangle x:Name="hit6" Fill="Transparent" Margin="635,186,517,10" />
+        <Rectangle x:Name="hit7" Fill="Transparent" Margin="760,185,392,11" />
+
+        <Rectangle x:Name="hit8" Fill="Transparent" Margin="10,26,1099,544" />
+        <Rectangle x:Name="hit_test" Margin="283,398,869,129" >
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="pack://application:,,,/AirMite;component/0.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
 
 
     </Grid>

@@ -55,6 +55,9 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>heart.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -195,6 +198,12 @@
     <Resource Include="7.png" />
     <Resource Include="8.png" />
     <Resource Include="9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="heart.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="r0.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

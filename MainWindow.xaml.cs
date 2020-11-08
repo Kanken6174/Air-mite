@@ -30,22 +30,20 @@ namespace AirMite
             InitializeComponent();
 
 
-            foreach (object obj in gappesB.Children) // tires for each object in children of canvas named grappesB
+            foreach (object obj in Tripletirage.Children) // tires for each object in children of canvas named grappesB
             {
                 try
                 {
                     Image img = (Image)obj;
                     Uri test = new Uri("0.png", UriKind.Relative);
-                    if (img.Source != new BitmapImage(test))
-                    {
-                        img.PreviewMouseDown += new MouseButtonEventHandler(myimg_MouseDown);
+ 
+                    img.PreviewMouseDown += new MouseButtonEventHandler(myimg_MouseDown);
                         img.PreviewMouseMove += new MouseEventHandler(myimg_MouseMove);
                         img.PreviewMouseUp += new MouseButtonEventHandler(myimg_MouseUp);
                         img.TextInput += new TextCompositionEventHandler(myimg_TextInput);
                         img.LostMouseCapture += new MouseEventHandler(myimg_LostMouseCapture);
                         img.SetValue(Canvas.LeftProperty, 0.0);
                         img.SetValue(Canvas.TopProperty, 0.0);
-                    }
                 }
                 catch// (notacardposition e) TODO: check if card landed on a correct poistion, else, put it back where it was before!
                 {
@@ -58,8 +56,25 @@ namespace AirMite
 
 
 
-            private void Reset_clicked(object sender, RoutedEventArgs e)
+        private void Reset_clicked(object sender, RoutedEventArgs e)
         {
+
+                canvasLeft = 0.0;
+                canvasTop = 0.0;
+                int counter = 0;
+                int Offset = 0;
+
+                while (counter < 3)
+                {
+                    counter++;
+                    Offset -= 110;
+                    string name = "ditto" + counter;
+
+                    (this.FindName(name) as Image).Source = null;   // erases source
+                    (this.FindName(name) as Image).SetValue(Canvas.LeftProperty, -100.0 - Offset); // only accepts floats and doubles!
+                    (this.FindName(name) as Image).SetValue(Canvas.TopProperty, canvasTop);
+                }
+            
 
         }
 
@@ -76,6 +91,7 @@ namespace AirMite
         void myimg_MouseUp(object sender, MouseButtonEventArgs e) // disables Hook on mouse position
         {
             ((Image)sender).ReleaseMouseCapture();
+            
         }
 
         void myimg_MouseMove(object sender, MouseEventArgs e) // changes variables accordingly if mouse moves
@@ -118,12 +134,24 @@ namespace AirMite
                     clonecount = 0;
                 }
 
-                Uri Carte = new Uri(clonecount + ".png", UriKind.Relative);     //Créé un élément de type uri (file handle ou un truc du genre)
+                Uri Carte = new Uri(clonecount + ".png", UriKind.Relative);     //CCreates Uri element, (sort of fileHandle for c#)
                 (this.FindName(name) as Image).Source = new BitmapImage(Carte);
-                (this.FindName(name) as Image).SetValue(Canvas.LeftProperty, -100.0 - Offset);
+                (this.FindName(name) as Image).SetValue(Canvas.LeftProperty, -100.0 - Offset); // only accepts floats and doubles!
                 (this.FindName(name) as Image).SetValue(Canvas.TopProperty, canvasTop);
             }
+            if (ditto2.Source == ditto3.Source)
+            {
+                clause.Content = ditto1.Source;
+            }
+            else
+            {
+                clause.Content = "nope";
+            }
+            c2.Content = "source de Ditto1 : " + ditto1.Source;
+            c3.Content = "source de Ditto2 : " + ditto2.Source;
+            c4.Content = "source de Ditto3 : " + ditto3.Source;
         }
+
     }
 }
 
