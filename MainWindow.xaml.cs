@@ -24,56 +24,38 @@ namespace AirMite
         private Point mouseClick;
         private double canvasLeft;
         private double canvasTop;
-        private double newX;
-        private double newY;
-        private bool isflipped;
         private int clonecount = 0;
         public MainWindow()
         {
             InitializeComponent();
 
 
-
-          /**  foreach (object obj in gappesB.Children) // tires for each object in children of canvas named grappesB
+            foreach (object obj in gappesB.Children) // tires for each object in children of canvas named grappesB
             {
                 try
                 {
                     Image img = (Image)obj;
-                    img.PreviewMouseDown += new MouseButtonEventHandler(myimg_MouseDown);
-                    img.PreviewMouseMove += new MouseEventHandler(myimg_MouseMove);
-                    img.PreviewMouseUp += new MouseButtonEventHandler(myimg_MouseUp);
-                    img.TextInput += new TextCompositionEventHandler(myimg_TextInput);
-                    img.LostMouseCapture += new MouseEventHandler(myimg_LostMouseCapture);
-                    img.SetValue(Canvas.LeftProperty, 0.0);
-                    img.SetValue(Canvas.TopProperty, 0.0);
+                    Uri test = new Uri("0.png", UriKind.Relative);
+                    if (img.Source != new BitmapImage(test))
+                    {
+                        img.PreviewMouseDown += new MouseButtonEventHandler(myimg_MouseDown);
+                        img.PreviewMouseMove += new MouseEventHandler(myimg_MouseMove);
+                        img.PreviewMouseUp += new MouseButtonEventHandler(myimg_MouseUp);
+                        img.TextInput += new TextCompositionEventHandler(myimg_TextInput);
+                        img.LostMouseCapture += new MouseEventHandler(myimg_LostMouseCapture);
+                        img.SetValue(Canvas.LeftProperty, 0.0);
+                        img.SetValue(Canvas.TopProperty, 0.0);
+                    }
                 }
                 catch// (notacardposition e) TODO: check if card landed on a correct poistion, else, put it back where it was before!
                 {
                     //do something
                 }
-            }*/
-
-
-        }
-
-        private void NvTirage(object sender, RoutedEventArgs e)
-        {
-            int counter = 0;
-            Random rnd = new Random();
-            while (counter < 3)
-            {
-                counter++;
-                string name = "ditto" + counter;
-                clonecount = rnd.Next(1, 53);
-                if (clonecount > 52)
-                {
-                    clonecount = 0;
-                }
-
-                Uri resourceUri = new Uri(clonecount + ".png", UriKind.Relative);
-                (this.FindName(name) as Image).Source = new BitmapImage(resourceUri);
             }
+
+
         }
+
 
 
             private void Reset_clicked(object sender, RoutedEventArgs e)
@@ -101,10 +83,10 @@ namespace AirMite
             if (((Image)sender).IsMouseCaptured)
             {
                 Point mouseCurrent = e.GetPosition(null);
-                double Left = mouseCurrent.X - canvasLeft - 50; // yes i know substracting the card center afterwards is ugly,
-                double Top = mouseCurrent.Y - canvasTop - 100;  // but it'll work for now
-                ((Image)sender).SetValue(Canvas.LeftProperty, canvasLeft + Left);
-                ((Image)sender).SetValue(Canvas.TopProperty, canvasTop + Top);
+                double Left = mouseCurrent.X - canvasLeft - 830; // yes i know substracting the card center afterwards is ugly,
+                double Top = mouseCurrent.Y - canvasTop - 80;  // but it'll work for now
+                ((Image)sender).SetValue(Canvas.LeftProperty, canvasLeft + Left); // Sets new position on canvas for clicked image
+                ((Image)sender).SetValue(Canvas.TopProperty, canvasTop + Top); //
                 canvasLeft = Canvas.GetLeft(((Image)sender));
                 canvasTop = Canvas.GetTop(((Image)sender));
             }
@@ -116,6 +98,31 @@ namespace AirMite
             canvasLeft = Canvas.GetLeft(((Image)sender));   // get left coordinates of clicked picture
             canvasTop = Canvas.GetTop(((Image)sender));     // get top coordinates of clicked picture
             ((Image)sender).CaptureMouse();
+        }
+
+        private void NvTirage(object sender, RoutedEventArgs e)
+        {
+            canvasLeft = 0.0;
+            canvasTop = 0.0;
+            int counter = 0;
+            int Offset = 00;
+            Random rnd = new Random();
+            while (counter < 3)
+            {
+                counter++;
+                Offset -= 110;
+                string name = "ditto" + counter;
+                clonecount = rnd.Next(1, 53);
+                if (clonecount > 52 || counter > 1)
+                {
+                    clonecount = 0;
+                }
+
+                Uri Carte = new Uri(clonecount + ".png", UriKind.Relative);     //Créé un élément de type uri (file handle ou un truc du genre)
+                (this.FindName(name) as Image).Source = new BitmapImage(Carte);
+                (this.FindName(name) as Image).SetValue(Canvas.LeftProperty, -100.0 - Offset);
+                (this.FindName(name) as Image).SetValue(Canvas.TopProperty, canvasTop);
+            }
         }
     }
 }

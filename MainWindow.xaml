@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AirMite"
         mc:Ignorable="d"
-        Title="L Air Mite" Height="720" Width="1280">
+        Title="L'AirMite" Height="720" Width="1280">
 
 
 
@@ -18,29 +18,69 @@
             <Image Source="r0.png"/>
         </Button>
 
-        <Button x:Name="Piocher" Margin="10,10,1135,479" HorizontalAlignment="Left" VerticalAlignment="Top" Click="NvTirage">
-            <Image Source="0.png"/>
+        <Button x:Name="Piocher" Margin="1123,9,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="NvTirage" Width="135" Height="187">
+            <Image Source="0.png" Height="187" Width="134"/>
         </Button>
 
-        <Image x:Name="grappeB7" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="664" Canvas.Top="10" Margin="767,181,0,0"/>
-        <Image x:Name="grappeB8" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="664" Canvas.Top="10" Margin="517,181,0,0"/>
-        <Image x:Name="grappeB2" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="664" Canvas.Top="10" Margin="642,181,0,0"/>
-        <Image x:Name="grappeB3" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="789" Canvas.Top="10" Margin="892,181,0,0"/>
-        <Image x:Name="grappeB4" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="914" Canvas.Top="10" Margin="1017,181,0,0"/>
-        <Image x:Name="grappeB5" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="1142,181,0,0"/>
+        <Image x:Name="grappeB7" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="664" Canvas.Top="10" Margin="385,186,0,0"/>
+        <Image x:Name="grappeB8" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="664" Canvas.Top="10" Margin="135,186,0,0"/>
+        <Image x:Name="grappeB2" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="664" Canvas.Top="10" Margin="260,186,0,0"/>
+        <Image x:Name="grappeB3" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="789" Canvas.Top="10" Margin="510,186,0,0"/>
+        <Image x:Name="grappeB4" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="914" Canvas.Top="10" Margin="635,186,0,0"/>
+        <Image x:Name="grappeB5" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="760,186,0,0"/>
 
-        <Image x:Name="grappeC1" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="1142,10,0,0"/>
-        <Image x:Name="grappeC2" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="1017,10,0,0"/>
-        <Image x:Name="grappeC3" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="892,10,0,0"/>
-        <Image x:Name="grappeC4" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="767,10,0,0"/>
+        <Image x:Name="grappeC1" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="564,4,0,0" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="grappeC2" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="388,3,0,0" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="grappeC3" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="211,3,0,0" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="grappeC4" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="32,4,0,0" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
 
 
 
-        <Image x:Name="grappeB9" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="120" Source="0.png" Margin="392,181,0,0"/>
+        <Image x:Name="grappeB9" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Margin="10,186,0,0"/>
+        <Canvas x:Name="gappesB" Margin="778,10,162,509">
 
-        <Image x:Name="ditto1" HorizontalAlignment="Left" Height="171" Margin="142,10,0,0" VerticalAlignment="Top" Width="109" />
-        <Image x:Name="ditto2" HorizontalAlignment="Left" Height="171" Margin="256,10,0,0" VerticalAlignment="Top" Width="109" />
-        <Image x:Name="ditto3" HorizontalAlignment="Left" Height="171" Margin="370,10,0,0" VerticalAlignment="Top" Width="109" />
+            <Image x:Name="ditto3" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="109" Canvas.Left="223" />
+            <Image x:Name="ditto2" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="109" Canvas.Left="114" />
+            <Image x:Name="ditto1" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="109" />
+
+
+        </Canvas>
 
 
     </Grid>
