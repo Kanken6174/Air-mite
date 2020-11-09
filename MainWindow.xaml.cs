@@ -148,30 +148,32 @@ namespace AirMite
         BitmapImage CardFace = new BitmapImage(Carte);
         ditto4.Fill = new ImageBrush(CardFace);
         Tripletirage.Children.Add(ditto4);
+
+        Air.Mite.Set(ditto4, facevalue);
+        c4.Content = Air.Mite.Get(ditto4);
         }
     }
 }
 
-namespace CustomAttributes  // Ici, on définit un namespace, une classe, puis une propriété qui stockera en XAML la valeur de la carte, même cachée
+namespace Air  // Ici, on définit un namespace, une classe, puis une propriété qui stockera en XAML la valeur de la carte, même cachée
 {
-    public static class CustomClass
+    public static class Mite
     {
 
-        public static readonly DependencyProperty FaceValueProperty = DependencyProperty.RegisterAttached("MyProperty",
-            typeof(string), typeof(CustomClass), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty FaceValueProperty = DependencyProperty.RegisterAttached("MyProperty",typeof(int), typeof(Mite), new FrameworkPropertyMetadata(null)); // définit l'attribut custom
 
-        public static string GetMyProperty(UIElement element)
+        public static int Get(UIElement element)  //à utiliser si on veut LIRE la valeur de la carte
         {
             if (element == null)
                 throw new ArgumentNullException("element");
-            return (string)element.GetValue(FaceValueProperty);
+            return (int)element.GetValue(FaceValueProperty);
         }
-        public static void SetMyProperty(UIElement element, string value)
+        public static void Set(UIElement element, int value)  // à utiliser pour ECRIRE sur la valeur de la carte
         {
             if (element == null)
                 throw new ArgumentNullException("element");
             element.SetValue(FaceValueProperty, value);
         }
-    }
+    }// Cet attribut custom s'appelle avec : Air(namespace).Mite(classe publique).Get/Set, un très bon exemple de POO :)
 }
 
