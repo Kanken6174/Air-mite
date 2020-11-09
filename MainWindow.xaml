@@ -9,7 +9,7 @@
 
 
 
-    <Grid>
+    <Grid x:Name="mainGrid">
         <Button x:Name="Mute" Margin="1157,591,49,27">
             <Image Source="M0.png" Canvas.ZIndex="1"/>
         </Button>
@@ -77,7 +77,7 @@
 
 
 
-        <Canvas x:Name="Tripletirage" Margin="778,10,162,509">
+        <Canvas x:Name="Tripletirage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MouseMove="MovShp_MouseMove"  MouseUp="MovShp_MouseUp" Background="Transparent">
 
             <Rectangle x:Name="ditto3" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="109" Canvas.Left="228"/>
             <Rectangle x:Name="ditto2" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="109"/>
@@ -98,11 +98,7 @@
         <Rectangle x:Name="hit7" Fill="Transparent" Margin="760,185,392,11" />
 
         <Rectangle x:Name="hit8" Fill="Transparent" Margin="10,26,1099,544" />
-        <Rectangle x:Name="hit_test" Margin="283,398,869,129" >
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="pack://application:,,,/AirMite;component/0.png"/>
-            </Rectangle.Fill>
-        </Rectangle>
+      
 
 
     </Grid>
