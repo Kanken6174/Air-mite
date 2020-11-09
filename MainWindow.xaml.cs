@@ -22,9 +22,9 @@ namespace AirMite
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Point mouseClick;
-        private double canvasLeft;
-        private double canvasTop;
+        private bool drag = true;
+        private Point startPt;
+        private double newX, newY;
         public int card_number = 0;
         public MainWindow()
         {
@@ -109,6 +109,52 @@ namespace AirMite
             clause.Content = isflipped;
         }
 
+        private void MovShp_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            drag = true;
+            Cursor = Cursors.Hand;
+            startPt = e.GetPosition(Tripletirage);
+            Mouse.Capture(Tripletirage);
+        }
+
+        private void MovShp_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            drag = false;
+            Cursor = Cursors.Arrow;
+            Mouse.Capture(null);
+        }
+
+        private void MovShp_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (drag)
+            {
+                foreach (Rectangle MovableShape in Tripletirage.Children)
+                { 
+                var mp = e.GetPosition(Tripletirage);
+                double deltaX = mp.X - startPt.X;
+                double deltaY = mp.Y - startPt.Y;
+
+                var newX = deltaX + Canvas.GetLeft(MovableShape);
+                var newY = deltaY + Canvas.GetTop(MovableShape);
+
+                if (newX < 0)
+                    newX = 0;
+                else if (newX + MovableShape.ActualWidth > Tripletirage.ActualWidth)
+                    newX = Tripletirage.ActualWidth - Tripletirage.ActualWidth;
+
+                if (newY < 0)
+                    newY = 0;
+                else if (newY + Tripletirage.ActualHeight > Tripletirage.ActualHeight)
+                    newY = Tripletirage.ActualHeight - MovableShape.ActualHeight;
+
+                Canvas.SetLeft(MovableShape, newX);
+                Canvas.SetTop(MovableShape, newY);
+
+                startPt = mp;
+                }
+            }
+
+        }
     }
 }
 
@@ -153,13 +199,3 @@ namespace Air  // Ici, on définit un namespace, une classe, puis une propriét�
     }
 }
 
-namespace Cardinal // s'occupera de toutes les fonctions et classes liés au mouvement.
-{
-    public class Movement   // Classe principale du moteur de mouvement
-    {
-        private bool drag = true;
-        private Point StartPt;
-        private Point EndPt;
-        private double newX, newY;
-    }
-}
