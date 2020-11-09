@@ -24,7 +24,6 @@ namespace AirMite
         private Point mouseClick;
         private double canvasLeft;
         private double canvasTop;
-        private int clonecount = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -70,7 +69,7 @@ namespace AirMite
                     Offset -= 110;
                     string name = "ditto" + counter;
 
-                    (this.FindName(name) as ImageBrush).ImageSource = null;   // erases ImageSource
+                    (this.FindName(name) as Rectangle).Fill = new ImageBrush(null); ;   // erases ImageSource
                     (this.FindName(name) as Rectangle).SetValue(Canvas.LeftProperty, -100.0 - Offset); // only accepts floats and doubles!
                     (this.FindName(name) as Rectangle).SetValue(Canvas.TopProperty, canvasTop);
                 }
@@ -118,56 +117,61 @@ namespace AirMite
 
         private void NvTirage(object sender, RoutedEventArgs e)
         {
-            canvasLeft = 0.0;
-            canvasTop = 0.0;
-            int counter = 0;
-            int Offset = 00;
+            int facevalue = 0;
+            int CardID = 0;
+            int Xpos = 0,Ypos = 0;
+            int c;
             Random rnd = new Random();
-            /*while (counter < 3)
-            {*/
-                counter++;
-                Offset -= 110;
-                string name = "ditto" + counter;
-                clonecount = rnd.Next(1, 53);
-                if (clonecount > 52 || counter > 1)
-                {
-                    clonecount = 0;
-                }
+            facevalue = rnd.Next(1, 53);
+            MakeRectangle(CardID,facevalue, Xpos, Ypos);
 
-                /*Uri Carte = new Uri(clonecount + ".png", UriKind.Relative);     //CCreates Uri element, (sort of fileHandle for c#)*/
-
-
-                /*ImageBrush ib = new ImageBrush();
-                ib.ImageSource = new ImageBrush(new BitmapImage(Carte)); // NEEDS FIXING*/
-                Rectangle ditto4 = new Rectangle();
-                Canvas.SetLeft(ditto4, 150);
-                Canvas.SetTop(ditto4, 130);
-                ditto4.StrokeThickness = 10;
-                ditto4.Height = 200;
-                ditto4.Width = 140;
-                ditto4.SetValue(Canvas.LeftProperty, 100d);
-                ditto4.SetValue(Canvas.TopProperty, 100d);
-                Uri Carte = new Uri("pack://AirMite:,,,/Resources/"+ clonecount + ".png", UriKind.Relative);
-                BitmapImage CardFace = new BitmapImage(Carte);
-                ditto4.Fill = new ImageBrush(CardFace);
-                Tripletirage.Children.Add(ditto4);  //is a valid canvas
-                /*(this.FindName(name) as Rectangle).SetValue(Canvas.LeftProperty, -100.0 - Offset); // only accepts floats and doubles!
-                (this.FindName(name) as Rectangle).SetValue(Canvas.TopProperty, canvasTop);*/
-            //}
-            /*if (ditto2.ImageSource == ditto3.ImageSource)
+            for(c=0; c<2; c++)
             {
-                clause.Content = ditto1.ImageSource;
+                MakeRectangle(CardID, 0, Xpos, Ypos);
+                MakeRectangle(CardID, 0, Xpos, Ypos);
             }
-            else
-            {
-                clause.Content = "nope";
-            }
-            c2.Content = "ImageSource de Ditto1 : " + ditto1.ImageSource;
-            c3.Content = "ImageSource de Ditto2 : " + ditto2.ImageSource;
-            c4.Content = "ImageSource de Ditto3 : " + ditto3.ImageSource;
-            */
+
+            
         }
 
+        private void MakeRectangle(int CardID, int facevalue, int X, int Y)
+        {
+        Rectangle ditto4 = new Rectangle();
+        Canvas.SetLeft(ditto4, 150);
+        Canvas.SetTop(ditto4, 130);
+        ditto4.StrokeThickness = 10;
+        ditto4.Height = 200;
+        ditto4.Width = 140;
+        ditto4.SetValue(Canvas.LeftProperty, 100d);
+        ditto4.SetValue(Canvas.TopProperty, 100d);
+        Uri Carte = new Uri("pack://application:,,,/AirMite;component/" + facevalue + ".png", UriKind.RelativeOrAbsolute);
+        BitmapImage CardFace = new BitmapImage(Carte);
+        ditto4.Fill = new ImageBrush(CardFace);
+        Tripletirage.Children.Add(ditto4);
+        }
+    }
+}
+
+namespace CustomAttributes  // Ici, on définit un namespace, une classe, puis une propriété qui stockera en XAML la valeur de la carte, même cachée
+{
+    public static class CustomClass
+    {
+
+        public static readonly DependencyProperty FaceValueProperty = DependencyProperty.RegisterAttached("MyProperty",
+            typeof(string), typeof(CustomClass), new FrameworkPropertyMetadata(null));
+
+        public static string GetMyProperty(UIElement element)
+        {
+            if (element == null)
+                throw new ArgumentNullException("element");
+            return (string)element.GetValue(FaceValueProperty);
+        }
+        public static void SetMyProperty(UIElement element, string value)
+        {
+            if (element == null)
+                throw new ArgumentNullException("element");
+            element.SetValue(FaceValueProperty, value);
+        }
     }
 }
 
