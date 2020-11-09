@@ -123,34 +123,50 @@ namespace AirMite
             int c;
             Random rnd = new Random();
             facevalue = rnd.Next(1, 53);
-            MakeRectangle(CardID,facevalue, Xpos, Ypos);
-
-            for(c=0; c<2; c++)
-            {
-                MakeRectangle(CardID, 0, Xpos, Ypos);
-                MakeRectangle(CardID, 0, Xpos, Ypos);
-            }
+            MakeRectangle(1,1,facevalue, Xpos, Ypos);; // écriture de la carte
 
             
         }
 
-        private void MakeRectangle(int CardID, int facevalue, int X, int Y)
+        private void MakeRectangle(int CardID, int flipped, int facevalue, int X, int Y) // écriture de la carte
         {
-        Rectangle ditto4 = new Rectangle();
-        Canvas.SetLeft(ditto4, 150);
-        Canvas.SetTop(ditto4, 130);
-        ditto4.StrokeThickness = 10;
-        ditto4.Height = 200;
-        ditto4.Width = 140;
-        ditto4.SetValue(Canvas.LeftProperty, 100d);
-        ditto4.SetValue(Canvas.TopProperty, 100d);
-        Uri Carte = new Uri("pack://application:,,,/AirMite;component/" + facevalue + ".png", UriKind.RelativeOrAbsolute);
-        BitmapImage CardFace = new BitmapImage(Carte);
-        ditto4.Fill = new ImageBrush(CardFace);
-        Tripletirage.Children.Add(ditto4);
+        string ID = "Clone" + CardID.ToString();
+        Rectangle Clone1 = new System.Windows.Shapes.Rectangle();
+            { 
+            Height = 800;
+            Width = 1400;
+            }
 
-        Air.Mite.Set(ditto4, facevalue);
-        c4.Content = Air.Mite.Get(ditto4);
+        if(flipped != 0)
+            {
+                Draw(facevalue, Clone1); //écrit à la carte cID la valeur visible donnée
+            } else {
+                Draw(0, Clone1); //écrit à la carte cID la valeur visible donnée
+            }
+        Tripletirage.Children.Add(Clone1);
+        Canvas.SetLeft(Clone1, 150);
+        Canvas.SetTop(Clone1, 130);
+
+        Air.Mite.Set(Clone1, facevalue);
+        c4.Content = Air.Mite.Get(Clone1);
+        }
+
+        private void Draw(int facevalue, Rectangle cID) //écrit à la carte cID la valeur visible donnée
+        {;
+            Uri Carte = new Uri("pack://application:,,,/AirMite;component/" + facevalue + ".png", UriKind.RelativeOrAbsolute);
+            BitmapImage CardFace = new BitmapImage(Carte);
+            cID.Fill = new ImageBrush(CardFace);
+        }
+
+        private void Flip(int CardID) //change la valeur visible de la carte vers celle de la valeur custom cachée
+        {
+            string ID = CardID.ToString();
+
+            int facevalue = Air.Mite.Get((this.FindName(ID) as Rectangle));
+
+            Uri flip = new Uri("pack://application:,,,/AirMite;component/" + facevalue + ".png", UriKind.RelativeOrAbsolute);
+            BitmapImage CardFace = new BitmapImage(flip);
+            (this.FindName(ID) as Rectangle).Fill = new ImageBrush(CardFace);
         }
     }
 }
