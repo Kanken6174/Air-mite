@@ -22,39 +22,72 @@ namespace AirMite
     /// </summary>
     public partial class MainWindow : Window
     {
-        private bool drag = true;
-        private Point startPt;
-        private double newX, newY;
+        private Point mouseClick;
+        private double canvasLeft;
+        private double canvasTop;
         public int card_number = 0;
+        public int WorldID = 0;
         public MainWindow()
         {
             InitializeComponent();
 
+            foreach (object carte in Tripletirage.Children)
+            {
+                try
+                {
+                    Rectangle Card = (Rectangle)carte;
+
+                    Card.PreviewMouseDown += new MouseButtonEventHandler(MaCarte_MouseDown);
+                    Card.PreviewMouseMove += new MouseEventHandler(MaCarte_MouseMove);
+                    Card.PreviewMouseUp += new MouseButtonEventHandler(MaCarte_MouseUp);
+                    Card.TextInput += new TextCompositionEventHandler(MaCarte_TextInput);
+                    Card.LostMouseCapture += new MouseEventHandler(MaCarte_LostCursor);
+                    Card.SetValue(Canvas.LeftProperty, 0.0);
+                    Card.SetValue(Canvas.TopProperty, 0.0);
+                }
+
+                catch
+                {
+                    c3.Content = "ERROR";
+                }
+            }
         }
 
         private List<Rectangle> _Deck = new List<Rectangle>();
 
         
         private void Reset_clicked(object sender, RoutedEventArgs e)
-        {         
-         
+        {
+            string allrect="";
+            foreach (Rectangle author in _Deck)
+            {
+                allrect = allrect + author + "\n";
+            }
+            c8.Content = allrect;
         }
 
 
         public void NvTirage(object sender, RoutedEventArgs e)
         {
             card_number = 0;
-            foreach (Rectangle Cards in _Deck)
-            {
-                c3.Content = card_number;
-                card_number++;
-            }
-            int facevalue;
+            int facevalue = 0;
+            int verify;
             double Xpos = 0.0,Ypos = 100.0;
             Random rnd = new Random();
-            facevalue = rnd.Next(1, 53);
+            foreach(Rectangle exist in _Deck)
+            {
+                facevalue = rnd.Next(1, 53);
+                do
+                {
+                    facevalue = rnd.Next(1, 53);
+                    verify = Air.Mite.Get(exist);       // Empêche deux cartes de même face de sortir (en théorie)
+                } while (facevalue == verify);
+
+            }
             Rectangle NewClone = MakeRectangle(1,false,facevalue, Xpos, Ypos);; // écriture de la carte
+            RegisterName("CARD"+facevalue.ToString(), NewClone);
             _Deck.Add(NewClone);
+            c3.Content = _Deck.Capacity;
         }
 
         private Rectangle MakeRectangle(int CardID, bool Flipped, int facevalue, double X, double Y) // écriture de la carte
@@ -77,7 +110,7 @@ namespace AirMite
                 Air.Mite.Set(Clone1, facevalue);    // Setup custom facevalue = vraie valeur cachée
                  }
 
-            c4.Content = Air.Mite.Get(Clone1);  // charge dans c4 la valeur cachée de face
+            c2.Content = Air.Mite.Get(Clone1);  // charge dans c4 la valeur cachée de face
             clause.Content = Flipped;   //charge dans clause la valeur de flipped = false
 
             Flip(Clone1);// inverse l'état de clone, charge la vraie valeur de face sur la carte
@@ -108,53 +141,45 @@ namespace AirMite
             isflipped = !isflipped;
             clause.Content = isflipped;
         }
+        // En-dessous : code pour le mouvement (très buggé)
 
-        private void MovShp_MouseDown(object sender, MouseButtonEventArgs e)
+        void MaCarte_LostCursor(object sender, MouseEventArgs e)
         {
-            drag = true;
-            Cursor = Cursors.Hand;
-            startPt = e.GetPosition(Tripletirage);
-            Mouse.Capture(Tripletirage);
+            ((Rectangle)sender).ReleaseMouseCapture();
         }
 
-        private void MovShp_MouseUp(object sender, MouseButtonEventArgs e)
+        void MaCarte_TextInput(object sender, TextCompositionEventArgs e)
         {
-            drag = false;
-            Cursor = Cursors.Arrow;
-            Mouse.Capture(null);
+            ((Rectangle)sender).ReleaseMouseCapture();
         }
 
-        private void MovShp_MouseMove(object sender, MouseEventArgs e)
+        void MaCarte_MouseUp(object sender, MouseButtonEventArgs e) // disables Hook on mouse position
         {
-            if (drag)
+            ((Rectangle)sender).ReleaseMouseCapture();
+        }
+
+        void MaCarte_MouseMove(object sender, MouseEventArgs e) // changes variables accordingly if mouse moves
+        {
+            if (((Rectangle)sender).IsMouseCaptured)
             {
-                foreach (Rectangle MovableShape in Tripletirage.Children)
-                { 
-                var mp = e.GetPosition(Tripletirage);
-                double deltaX = mp.X - startPt.X;
-                double deltaY = mp.Y - startPt.Y;
-
-                var newX = deltaX + Canvas.GetLeft(MovableShape);
-                var newY = deltaY + Canvas.GetTop(MovableShape);
-
-                if (newX < 0)
-                    newX = 0;
-                else if (newX + MovableShape.ActualWidth > Tripletirage.ActualWidth)
-                    newX = Tripletirage.ActualWidth - Tripletirage.ActualWidth;
-
-                if (newY < 0)
-                    newY = 0;
-                else if (newY + Tripletirage.ActualHeight > Tripletirage.ActualHeight)
-                    newY = Tripletirage.ActualHeight - MovableShape.ActualHeight;
-
-                Canvas.SetLeft(MovableShape, newX);
-                Canvas.SetTop(MovableShape, newY);
-
-                startPt = mp;
-                }
+                Point mouseCurrent = e.GetPosition(null);
+                double Left = mouseCurrent.X - canvasLeft - 830; // yes i know substracting the card center afterwards is ugly,
+                double Top = mouseCurrent.Y - canvasTop - 80;  // but it'll work for now
+                ((Rectangle)sender).SetValue(Canvas.LeftProperty, canvasLeft + Left); // Sets new position on canvas for clicked image
+                ((Rectangle)sender).SetValue(Canvas.TopProperty, canvasTop + Top); //
+                canvasLeft = Canvas.GetLeft(((Rectangle)sender));
+                canvasTop = Canvas.GetTop(((Rectangle)sender));
             }
-
         }
+
+        void MaCarte_MouseDown(object sender, MouseButtonEventArgs e) // checks for mouse click on children of canvas (drag)
+        {
+            mouseClick = e.GetPosition(null);
+            canvasLeft = Canvas.GetLeft(((Rectangle)sender));   // get left coordinates of clicked picture
+            canvasTop = Canvas.GetTop(((Rectangle)sender));     // get top coordinates of clicked picture
+            ((Rectangle)sender).CaptureMouse();
+        }
+
     }
 }
 
@@ -199,3 +224,46 @@ namespace Air  // Ici, on définit un namespace, une classe, puis une propriét�
     }
 }
 
+
+
+// CODE MORT ICI :
+
+/*  // Mauvais code de mouvement, mis au coin
+bool drag = false; 
+
+if (Mouse.LeftButton == MouseButtonState.Pressed)
+{
+    drag = true;
+    Cursor = Cursors.Hand;
+    MousePos = Mouse.GetPosition(Application.Current.MainWindow);
+    c2.Content = "Pressed";
+}
+
+if (Mouse.LeftButton != MouseButtonState.Pressed)
+{
+    drag = false;
+    Cursor = Cursors.Arrow;
+    Mouse.GetPosition(null);
+}
+
+if (drag)
+{
+    var fatherposition = e.GetPosition(Tripletirage);
+
+    MousePos = fatherposition;
+
+    Canvas.SetLeft(MovableShape, MousePos.X);
+    Canvas.SetTop(MovableShape, MousePos.Y);
+
+
+}
+
+private void MovShp_MouseMove(object sender, MouseEventArgs e)
+          {
+
+
+
+
+          }// Fin du code de mouvement
+
+*/
