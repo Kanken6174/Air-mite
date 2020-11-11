@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AirMite"
         mc:Ignorable="d"
-        Title="L'AirMite" Height="720" Width="1280">
+        Title="L'AirMite" Height="720" Width="1280"
+>
 
 
 
     <Grid x:Name="mainGrid">
-        <Button x:Name="Mute" Margin="1157,591,49,27">
-            <Image Source="M0.png" Canvas.ZIndex="1"/>
+        <Button x:Name="Mute" Margin="1157,591,49,27" Click="Mute_Clicked">
+ 
         </Button>
 
         <Button x:Name="Reset" Margin="1157,521,49,103" Click="Reset_clicked">
@@ -77,11 +78,8 @@
 
 
 
-        <Canvas x:Name="Tripletirage" Background="Transparent" Margin="21,10,169,46" >
-
-            <Rectangle x:Name="ditto3" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="109" Canvas.Left="228"/>
-            <Rectangle x:Name="ditto2" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="109"/>
-            <Rectangle x:Name="ditto1" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="109" Canvas.Left="114"/>
+        <Canvas x:Name="CanvasPrincipal" Background="Transparent" Margin="21,10,169,46" Panel.ZIndex="999">
+            <Rectangle x:Name="CarreTest" Fill="Red" Height="100" Canvas.Left="253" Canvas.Top="256" Width="100"/>
 
         </Canvas>
         <Label x:Name="clause" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,503,0,0" VerticalAlignment="Top"/>
@@ -102,7 +100,7 @@
         <Rectangle x:Name="hit7" Fill="Transparent" Margin="760,185,392,11" />
 
         <Rectangle x:Name="hit8" Fill="Transparent" Margin="10,26,1099,544" />
-      
+
 
 
     </Grid>

@@ -25,36 +25,19 @@ namespace AirMite
         private Point mouseClick;
         private double canvasLeft;
         private double canvasTop;
+
         public int card_number = 0;
         public int WorldID = 0;
         public int NombredeCartes = 0;
+
         public MainWindow()
         {
             InitializeComponent();
-
-            foreach (object carte in Tripletirage.Children)
-            {
-                try
-                {
-                    Rectangle Card = (Rectangle)carte;
-
-                    Card.PreviewMouseDown += new MouseButtonEventHandler(MaCarte_MouseDown);
-                    Card.PreviewMouseMove += new MouseEventHandler(MaCarte_MouseMove);
-                    Card.PreviewMouseUp += new MouseButtonEventHandler(MaCarte_MouseUp);
-                    Card.TextInput += new TextCompositionEventHandler(MaCarte_TextInput);
-                    Card.LostMouseCapture += new MouseEventHandler(MaCarte_LostCursor);
-                    Card.SetValue(Canvas.LeftProperty, 0.0);
-                    Card.SetValue(Canvas.TopProperty, 0.0);
-                }
-
-                catch
-                {
-                    c3.Content = "ERROR";
-                }
-            }
+            c7.Content = CanvasPrincipal.Children.Count;
+            
         }
 
-        private List<Rectangle> _Deck = new List<Rectangle>();
+        public List<Rectangle> _Deck = new List<Rectangle>();  //Liste de tous les rectangles sur le terrain (liste de structures de type rectangle)
 
         
         private void Reset_clicked(object sender, RoutedEventArgs e)
@@ -72,7 +55,7 @@ namespace AirMite
         {
             card_number = 0;
             int facevalue = 0;
-            double Xpos = 0.0,Ypos = 100.0;
+            double Xpos = 200.0,Ypos = 0.0;
             Random rnd = new Random();
 
             if (NombredeCartes < 52)
@@ -88,30 +71,55 @@ namespace AirMite
                 RegisterName("CARD" + facevalue.ToString(), NewClone);
                 _Deck.Add(NewClone);
 
+                
+            
                 c3.Content = "nombre de cartes dans deck : " + _Deck.Count;
             }
             else
             {
                 c3.Content = "ALL CARDS ON TERRAIN (" + NombredeCartes + ")";
             }
+            foreach (Rectangle carte in CanvasPrincipal.Children)
+            {
+                try
+                {
+                    Rectangle Card = (Rectangle)carte;
 
+                    Card.PreviewMouseDown += new MouseButtonEventHandler(MaCarte_MouseDown);    //créé un nouvel observateur d'évenement (ODEV) de souris [event handler] pour quand la souris enfonce le click
+                    Card.PreviewMouseMove += new MouseEventHandler(MaCarte_MouseMove);          // nouveau ODEV pour quand la souris bouge
+                    Card.PreviewMouseUp += new MouseButtonEventHandler(MaCarte_MouseUp);        // nv ODEV pour si le bouton de la souris est relâché
+
+                    Card.TextInput += new TextCompositionEventHandler(MaCarte_TextInput);       // ODEV pour si on tape du texte avec le clavier
+                    Card.LostMouseCapture += new MouseEventHandler(MaCarte_LostCursor);         // ODEV pour si la souris sort du bord ou si on perd l'emplacement de la souris en général
+
+                }
+
+                catch
+                {
+                    c3.Content = "ERROR";
+                }
+            }
         }
 
         private Rectangle MakeRectangle(int CardID, bool Flipped, int facevalue, double X, double Y) // écriture de la carte
         {
-        string ID = "Clone" + CardID.ToString();
+        
         Rectangle Clone1 = new Rectangle();
-            { 
-                Tripletirage.Children.Add(Clone1);  // WHY THE **FUCK** DOES RESIZING THE RECTANGLE HERE CAUSES THE WINDOW TO RESIZE ???
-                Canvas.SetLeft(Clone1,X);
-                Canvas.SetTop(Clone1,Y);
+            {
+
             }
-        if (Flipped != false)
+            CanvasPrincipal.Children.Add(Clone1);  // WHY THE **FUCK** DOES RESIZING THE RECTANGLE HERE CAUSES THE WINDOW TO RESIZE ???
+            Canvas.SetLeft(Clone1, X);
+            Canvas.SetTop(Clone1, Y);
+
+            if (Flipped != false)
             {
                 Air.Flip.Set(Clone1, Flipped);
                 Paint(facevalue, Clone1); //écrit à la carte cID la valeur visible donnée
                 Air.Mite.Set(Clone1, facevalue);
+
             } else {
+
                 Air.Flip.Set(Clone1, Flipped);  // Setup custom flipped = false
                 Paint(0, Clone1); //écrit à la carte cID la valeur visible donnée
                 Air.Mite.Set(Clone1, facevalue);    // Setup custom facevalue = vraie valeur cachée
@@ -140,27 +148,32 @@ namespace AirMite
         {
 
             int facevalue = Air.Mite.Get(ID);
-            bool isflipped = Air.Flip.Get(ID);
+            bool FaceCachee = Air.Flip.Get(ID);
+            if (FaceCachee == true)                  // /!\ ATTENTION /!\ : false = face nombre visible; true = face cachée!!!
+            {
+                facevalue = 0;
+            }
 
             Uri flip = new Uri("pack://application:,,,/AirMite;component/" + facevalue + ".png", UriKind.RelativeOrAbsolute);
             BitmapImage CardFace = new BitmapImage(flip);
             ID.Fill = new ImageBrush(CardFace);
-            isflipped = !isflipped;
-            clause.Content = isflipped;
+            FaceCachee = !FaceCachee;
+            clause.Content = FaceCachee;
+
         }
         // En-dessous : code pour le mouvement (très buggé)
 
-        void MaCarte_LostCursor(object sender, MouseEventArgs e)
+        void MaCarte_LostCursor(object sender, MouseEventArgs e)    //arrête la capture de mouvement de la souris si le curseur n'est plus visible
         {
             ((Rectangle)sender).ReleaseMouseCapture();
         }
 
-        void MaCarte_TextInput(object sender, TextCompositionEventArgs e)
+        void MaCarte_TextInput(object sender, TextCompositionEventArgs e) //arrête la capture de mouvement de la souris si on tape du texte
         {
             ((Rectangle)sender).ReleaseMouseCapture();
         }
 
-        void MaCarte_MouseUp(object sender, MouseButtonEventArgs e) // disables Hook on mouse position
+        void MaCarte_MouseUp(object sender, MouseButtonEventArgs e) // arrête la capture de mouvement de la souris si on relache le bouton de la souris
         {
             ((Rectangle)sender).ReleaseMouseCapture();
         }
@@ -169,13 +182,18 @@ namespace AirMite
         {
             if (((Rectangle)sender).IsMouseCaptured)
             {
+                c4.Content = "Souris en cours de capture";
                 Point mouseCurrent = e.GetPosition(null);
-                double Left = mouseCurrent.X - canvasLeft - 830; // yes i know substracting the card center afterwards is ugly,
-                double Top = mouseCurrent.Y - canvasTop - 80;  // but it'll work for now
+                double Left = mouseCurrent.X - canvasLeft - 40; // yes i know substracting the card center afterwards is ugly,
+                double Top = mouseCurrent.Y - canvasTop - 40;  // but it'll work for now
                 ((Rectangle)sender).SetValue(Canvas.LeftProperty, canvasLeft + Left); // Sets new position on canvas for clicked image
                 ((Rectangle)sender).SetValue(Canvas.TopProperty, canvasTop + Top); //
                 canvasLeft = Canvas.GetLeft(((Rectangle)sender));
                 canvasTop = Canvas.GetTop(((Rectangle)sender));
+            }
+            else
+            {
+                c4.Content = "Souris non capturée";
             }
         }
 
@@ -185,6 +203,17 @@ namespace AirMite
             canvasLeft = Canvas.GetLeft(((Rectangle)sender));   // get left coordinates of clicked picture
             canvasTop = Canvas.GetTop(((Rectangle)sender));     // get top coordinates of clicked picture
             ((Rectangle)sender).CaptureMouse();
+        }
+
+        void Mute_Clicked(object sender, RoutedEventArgs e)
+        {
+            int count = 0;
+            foreach (Rectangle carte in CanvasPrincipal.Children)
+            {
+                count++;
+                c7.Content = count;
+            }
+            c7.Content = count;
         }
 
     }
