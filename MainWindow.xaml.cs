@@ -27,6 +27,7 @@ namespace AirMite
         private double canvasTop;
         public int card_number = 0;
         public int WorldID = 0;
+        public int NombredeCartes = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -71,23 +72,29 @@ namespace AirMite
         {
             card_number = 0;
             int facevalue = 0;
-            int verify;
             double Xpos = 0.0,Ypos = 100.0;
             Random rnd = new Random();
-            foreach(Rectangle exist in _Deck)
+
+            if (NombredeCartes < 52)
             {
-                facevalue = rnd.Next(1, 53);
                 do
                 {
                     facevalue = rnd.Next(1, 53);
-                    verify = Air.Mite.Get(exist);       // Empêche deux cartes de même face de sortir (en théorie)
-                } while (facevalue == verify);
+                } while ((this.FindName("CARD" + facevalue.ToString()) as Rectangle) != null); // vérifie si la carte existe déjà dans tous les x:name présents
 
+                NombredeCartes++;
+
+                Rectangle NewClone = MakeRectangle(1, false, facevalue, Xpos, Ypos); ; // écriture de la carte
+                RegisterName("CARD" + facevalue.ToString(), NewClone);
+                _Deck.Add(NewClone);
+
+                c3.Content = "nombre de cartes dans deck : " + _Deck.Count;
             }
-            Rectangle NewClone = MakeRectangle(1,false,facevalue, Xpos, Ypos);; // écriture de la carte
-            RegisterName("CARD"+facevalue.ToString(), NewClone);
-            _Deck.Add(NewClone);
-            c3.Content = _Deck.Capacity;
+            else
+            {
+                c3.Content = "ALL CARDS ON TERRAIN (" + NombredeCartes + ")";
+            }
+
         }
 
         private Rectangle MakeRectangle(int CardID, bool Flipped, int facevalue, double X, double Y) // écriture de la carte
