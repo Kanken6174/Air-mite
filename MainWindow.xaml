@@ -78,11 +78,8 @@
 
 
 
-        <Canvas x:Name="CanvasPrincipal" Background="Transparent" Margin="21,10,169,46" Panel.ZIndex="999">
-            <Rectangle x:Name="CarreTest" Fill="Red" Height="100" Canvas.Left="253" Canvas.Top="256" Width="100"/>
-
-        </Canvas>
-        <Label x:Name="clause" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,503,0,0" VerticalAlignment="Top"/>
+        <Canvas x:Name="CanvasPrincipal" Background="Transparent" Margin="21,10,169,46" Panel.ZIndex="999"/>
+        <Label x:Name="c1" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,503,0,0" VerticalAlignment="Top"/>
         <Label x:Name="c2" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,534,0,0" VerticalAlignment="Top"/>
         <Label x:Name="c3" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,565,0,0" VerticalAlignment="Top"/>
         <Label x:Name="c4" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,596,0,0" VerticalAlignment="Top"/>

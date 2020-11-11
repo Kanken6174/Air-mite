@@ -79,7 +79,7 @@ namespace AirMite
             {
                 c3.Content = "ALL CARDS ON TERRAIN (" + NombredeCartes + ")";
             }
-            foreach (Rectangle carte in CanvasPrincipal.Children)
+            foreach (Rectangle carte in CanvasPrincipal.Children)   //déplacé ici car il doit s'exécuter à chaque création de carte (placement des hooks ou [ODEV] sur la carte)
             {
                 try
                 {
@@ -126,11 +126,11 @@ namespace AirMite
                  }
 
             c2.Content = Air.Mite.Get(Clone1);  // charge dans c4 la valeur cachée de face
-            clause.Content = Flipped;   //charge dans clause la valeur de flipped = false
+            c1.Content = Flipped;   //charge dans clause la valeur de flipped = false
 
             Flip(Clone1);// inverse l'état de clone, charge la vraie valeur de face sur la carte
         Flipped = Air.Flip.Get(Clone1);
-        clause.Content = Flipped;
+        c1.Content = Flipped;
             return Clone1;
         }
 
@@ -158,7 +158,7 @@ namespace AirMite
             BitmapImage CardFace = new BitmapImage(flip);
             ID.Fill = new ImageBrush(CardFace);
             FaceCachee = !FaceCachee;
-            clause.Content = FaceCachee;
+            c1.Content = FaceCachee;
 
         }
         // En-dessous : code pour le mouvement (très buggé)
