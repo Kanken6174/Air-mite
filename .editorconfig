@@ -1,0 +1,10 @@
+﻿[*.{cs,vb}]
+
+# IDE0060: Supprimer le paramètre inutilisé
+dotnet_code_quality_unused_parameters = all:none
+
+# IDE0059: Assignation inutile d'une valeur
+csharp_style_unused_value_assignment_preference = discard_variable:silent
+
+# IDE0052: Supprimer les membres privés non lus
+dotnet_diagnostic.IDE0052.severity = silent
