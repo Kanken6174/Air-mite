@@ -25,10 +25,14 @@ namespace AirMite
         private Point mouseClick;
         private double canvasLeft;
         private double canvasTop;
+        private double OldLeft;
+        private double OldTop;
 
         public int card_number = 0;
         public int WorldID = 0;
         public int NombredeCartes = 0;
+
+        public bool collision = false;
 
         public MainWindow()
         {
@@ -42,12 +46,8 @@ namespace AirMite
         
         private void Reset_clicked(object sender, RoutedEventArgs e)
         {
-            string allrect="";
-            foreach (Rectangle author in _Deck)
-            {
-                allrect = allrect + author + "\n";
-            }
-            c8.Content = allrect;
+            collision = !collision;
+            c8.Content = "Carte ramenée : " + collision;
         }
 
 
@@ -91,7 +91,8 @@ namespace AirMite
 
                     Card.TextInput += new TextCompositionEventHandler(MaCarte_TextInput);       // ODEV pour si on tape du texte avec le clavier
                     Card.LostMouseCapture += new MouseEventHandler(MaCarte_LostCursor);         // ODEV pour si la souris sort du bord ou si on perd l'emplacement de la souris en général
-
+                    c5.Content = OldLeft;
+                    c6.Content = OldTop;
                 }
 
                 catch
@@ -176,6 +177,14 @@ namespace AirMite
         void MaCarte_MouseUp(object sender, MouseButtonEventArgs e) // arrête la capture de mouvement de la souris si on relache le bouton de la souris
         {
             ((Rectangle)sender).ReleaseMouseCapture();
+
+            if (collision)
+            {
+                double Left = OldLeft - canvasLeft;
+                double Top = OldTop - canvasTop;
+                ((Rectangle)sender).SetValue(Canvas.LeftProperty, canvasLeft + Left);
+                ((Rectangle)sender).SetValue(Canvas.TopProperty, canvasTop + Top);
+            }
         }
 
         void MaCarte_MouseMove(object sender, MouseEventArgs e) // changes variables accordingly if mouse moves
@@ -190,6 +199,8 @@ namespace AirMite
                 ((Rectangle)sender).SetValue(Canvas.TopProperty, canvasTop + Top); //
                 canvasLeft = Canvas.GetLeft(((Rectangle)sender));
                 canvasTop = Canvas.GetTop(((Rectangle)sender));
+                c5.Content = OldLeft;
+                c6.Content = OldTop;
             }
             else
             {
@@ -201,7 +212,9 @@ namespace AirMite
         {
             mouseClick = e.GetPosition(null);
             canvasLeft = Canvas.GetLeft(((Rectangle)sender));   // get left coordinates of clicked picture
+            OldLeft = canvasLeft;
             canvasTop = Canvas.GetTop(((Rectangle)sender));     // get top coordinates of clicked picture
+            OldTop = canvasTop;
             ((Rectangle)sender).CaptureMouse();
         }
 

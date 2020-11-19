@@ -32,52 +32,6 @@
         <Image x:Name="grappeB5" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="760,186,0,0"/>
         <Image x:Name="grappeB9" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Margin="10,186,0,0"/>-->
 
-
-        <!--This part is stupid, use textured rectangles instead-->
-        <Image x:Name="grappeC1" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="564,4,0,0" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Image x:Name="grappeC2" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="388,3,0,0" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Image x:Name="grappeC3" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="211,3,0,0" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Image x:Name="grappeC4" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="32,4,0,0" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-
-
-
-
         <Canvas x:Name="CanvasPrincipal" Background="Transparent" Margin="21,10,169,46" Panel.ZIndex="999"/>
         <Label x:Name="c1" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,503,0,0" VerticalAlignment="Top"/>
         <Label x:Name="c2" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,534,0,0" VerticalAlignment="Top"/>
