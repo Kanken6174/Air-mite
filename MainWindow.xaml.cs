@@ -32,7 +32,7 @@ namespace AirMite
         public int WorldID = 0;
         public int NombredeCartes = 0;
 
-        public bool collision = false; // ramène la carte ou pas
+        public bool collision = true; // ramène la carte ou pas
         public bool DebugMode = false;
 
         public MainWindow()
@@ -177,15 +177,49 @@ namespace AirMite
 
         void MaCarte_MouseUp(object sender, MouseButtonEventArgs e) // arrête la capture de mouvement de la souris si on relache le bouton de la souris
         {
+            double ST = Canvas.GetTop((Rectangle)sender);
+            double SL = Canvas.GetLeft((Rectangle)sender);
+
             ((Rectangle)sender).ReleaseMouseCapture();
 
-            if (collision)
-            {
-                double Left = OldLeft - canvasLeft;
-                double Top = OldTop - canvasTop;
-                ((Rectangle)sender).SetValue(Canvas.LeftProperty, canvasLeft + Left);
-                ((Rectangle)sender).SetValue(Canvas.TopProperty, canvasTop + Top);
+            foreach (Rectangle carte in CanvasPrincipal.Children)
+            { 
+            if(carte != sender)
+                {
+                    double CT = Canvas.GetTop(carte);
+                    double CL = Canvas.GetLeft(carte);
+
+                    double X = CT - ST;
+                    double Y = CL - SL;
+
+                    X += 40;
+                    Y += 40;
+
+                    if((X < 100 && Y < 100) && (X > -100 && Y > -100))
+                    {
+                        collision = false;
+                    }
+
+                    if (collision)
+                    {
+                        double Left = OldLeft - canvasLeft;
+                        double Top = OldTop - canvasTop;
+                        ((Rectangle)sender).SetValue(Canvas.LeftProperty, canvasLeft + Left);
+                        ((Rectangle)sender).SetValue(Canvas.TopProperty, canvasTop + Top);
+                        collision = true;
+                    }
+                    else
+                    {
+                        ((Rectangle)sender).SetValue(Canvas.LeftProperty, CL);
+                        ((Rectangle)sender).SetValue(Canvas.TopProperty, CT + 37);
+
+                        collision = true;
+                    }
+                }
             }
+
+                 
+            
         }
 
         void MaCarte_MouseMove(object sender, MouseEventArgs e) // changes variables accordingly if mouse moves
