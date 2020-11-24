@@ -6,9 +6,11 @@
         xmlns:local="clr-namespace:AirMite"
         mc:Ignorable="d"
         Title="L'AirMite" Height="720" Width="1280"
->
+        PreviewKeyDown="DebugRoutine"
+        >
 
 
+    <UserControl x:Name="GamePlate">
 
     <Grid x:Name="mainGrid">
         <Button x:Name="Mute" Margin="1157,591,49,27" Click="Mute_Clicked">
@@ -32,27 +34,30 @@
         <Image x:Name="grappeB5" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="760,186,0,0"/>
         <Image x:Name="grappeB9" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Margin="10,186,0,0"/>-->
 
-        <Canvas x:Name="CanvasPrincipal" Background="Transparent" Margin="21,10,169,46" Panel.ZIndex="999"/>
-        <Label x:Name="c1" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,503,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="c2" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,534,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="c3" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,565,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="c4" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,596,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="c5" Content="UNDEFINED" HorizontalAlignment="Left" Margin="462,596,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="c6" Content="UNDEFINED" HorizontalAlignment="Left" Margin="462,565,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="c7" Content="UNDEFINED" HorizontalAlignment="Left" Margin="462,534,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="c8" Content="UNDEFINED" HorizontalAlignment="Left" Margin="462,503,0,0" VerticalAlignment="Top"/>
+            <Canvas x:Name="CanvasPrincipal" Background="Transparent" Margin="21,10,169,46" Panel.ZIndex="999" Visibility="Visible"/>
+        
+            <Label x:Name="c1" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,503,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+            <Label x:Name="c2" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,534,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+            <Label x:Name="c3" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,565,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+            <Label x:Name="c4" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,596,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+            <Label x:Name="c5" Content="UNDEFINED" HorizontalAlignment="Left" Margin="462,596,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+            <Label x:Name="c6" Content="UNDEFINED" HorizontalAlignment="Left" Margin="462,565,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+            <Label x:Name="c7" Content="UNDEFINED" HorizontalAlignment="Left" Margin="462,534,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+            <Label x:Name="c8" Content="UNDEFINED" HorizontalAlignment="Left" Margin="462,503,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
 
-        <Rectangle x:Name="hit1" Fill="Transparent" Margin="10,186,1142,10" />
-        <Rectangle x:Name="hit2" Fill="Transparent" Margin="135,186,1017,10" />
-        <Rectangle x:Name="hit3" Fill="Transparent" Margin="260,186,892,10" />
-        <Rectangle x:Name="hit4" Fill="Transparent" Margin="385,186,767,10" />
-        <Rectangle x:Name="hit5" Fill="Transparent" Margin="510,186,642,10" />
-        <Rectangle x:Name="hit6" Fill="Transparent" Margin="635,186,517,10" />
-        <Rectangle x:Name="hit7" Fill="Transparent" Margin="760,185,392,11" />
+      <!--  <Rectangle x:Name="hit1" Fill="Transparent" Margin="10,186,1142,10" Visibility="Visible"/>
+            <Rectangle x:Name="hit2" Fill="Transparent" Margin="135,186,1017,10" Visibility="Visible"/>
+            <Rectangle x:Name="hit3" Fill="Transparent" Margin="260,186,892,10" Visibility="Visible"/>
+            <Rectangle x:Name="hit4" Fill="Transparent" Margin="385,186,767,10" Visibility="Visible"/>
+            <Rectangle x:Name="hit5" Fill="Transparent" Margin="510,186,642,10" Visibility="Visible"/>
+            <Rectangle x:Name="hit6" Fill="Transparent" Margin="635,186,517,10" Visibility="Visible"/>
+            <Rectangle x:Name="hit7" Fill="Transparent" Margin="760,185,392,11" Visibility="Visible"/>
+    inutiles
+        <Rectangle x:Name="hit8" Fill="Transparent" Margin="10,26,1099,544" />-->
 
-        <Rectangle x:Name="hit8" Fill="Transparent" Margin="10,26,1099,544" />
 
+        </Grid>
+        
 
-
-    </Grid>
+    </UserControl>
 </Window>

@@ -32,7 +32,8 @@ namespace AirMite
         public int WorldID = 0;
         public int NombredeCartes = 0;
 
-        public bool collision = false;
+        public bool collision = false; // ramène la carte ou pas
+        public bool DebugMode = false;
 
         public MainWindow()
         {
@@ -228,6 +229,34 @@ namespace AirMite
             }
             c7.Content = count;
         }
+
+        private void DebugRoutine(object sender, KeyEventArgs e)
+        {
+
+            int hitnb = 1;
+
+                c8.Content = hitnb;
+                if (Keyboard.IsKeyDown(Key.F1))
+                {
+                    DebugMode = !DebugMode;
+                }
+
+                  while(hitnb <= 8)
+                  {
+                    
+                      if(DebugMode)
+                      {
+                          (this.FindName("c" + hitnb) as Label).Visibility = Visibility.Visible;
+                      }
+                      else
+                      {
+                          (this.FindName("c" + hitnb) as Label).Visibility = Visibility.Hidden;
+                      }
+                      hitnb++;
+                  }
+            }
+           
+        
 
     }
 }
