@@ -402,4 +402,19 @@ private void MovShp_MouseMove(object sender, MouseEventArgs e)
             c1.Content = FaceCachee;
 
         }
+
+        private async void Reset_clicked(object sender, RoutedEventArgs e)
+        {
+             foreach(Rectangle carte in CanvasPrincipal.Children)
+             {
+                 UnregisterName(carte.Name);
+             }
+        await Task.Delay(1);
+        c7.Content = CanvasPrincipal.Children;
+        CanvasPrincipal.Children.Clear();
+        NombredeCartes = 0;
+        WorldID = 0;
+        NombredeCartes = 0;
+        _Deck.Clear();
+        }
 */
