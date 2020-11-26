@@ -44,17 +44,22 @@ namespace AirMite
 
         public List<Rectangle> _Deck = new List<Rectangle>();  //Liste de tous les rectangles sur le terrain (liste de structures de type rectangle)
 
-        
+//----------------------------------------------------------------------------------------------------------------------------------------------------------    
+
         private void Reset_clicked(object sender, RoutedEventArgs e)
         {
-            collision = !collision;
-            c8.Content = "Carte ramenée : " + collision;
+         foreach(Rectangle carte in CanvasPrincipal.Children)
+            {
+                (carte).SetValue(Canvas.LeftProperty, 1100.00);
+                (carte).SetValue(Canvas.TopProperty, 0.00);
+            }
         }
 
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
         public void NvTirage(object sender, RoutedEventArgs e)
         {
             card_number = 0;
+            c1.Content = "TIRAGE";
             int facevalue = 0;
             double Xpos = 200.0,Ypos = 0.0;
             Random rnd = new Random();
@@ -79,6 +84,7 @@ namespace AirMite
             else
             {
                 c3.Content = "ALL CARDS ON TERRAIN (" + NombredeCartes + ")";
+                c1.Content = "ERR TIRAGE";
             }
             foreach (Rectangle carte in CanvasPrincipal.Children)   //déplacé ici car il doit s'exécuter à chaque création de carte (placement des hooks ou [ODEV] sur la carte)
             {
@@ -102,7 +108,7 @@ namespace AirMite
                 }
             }
         }
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
         private Rectangle MakeRectangle(int CardID, bool Flipped, int facevalue, double X, double Y) // écriture de la carte
         {
         
@@ -113,29 +119,37 @@ namespace AirMite
             CanvasPrincipal.Children.Add(Clone1);  // WHY THE **FUCK** DOES RESIZING THE RECTANGLE HERE CAUSES THE WINDOW TO RESIZE ???
             Canvas.SetLeft(Clone1, X);
             Canvas.SetTop(Clone1, Y);
+            Canvas.SetZIndex(Clone1, 1);
 
-            if (Flipped != false)
-            {
-                Air.Flip.Set(Clone1, Flipped);
-                Paint(facevalue, Clone1); //écrit à la carte cID la valeur visible donnée
-                Air.Mite.Set(Clone1, facevalue);
-
-            } else {
-
-                Air.Flip.Set(Clone1, Flipped);  // Setup custom flipped = false
-                Paint(0, Clone1); //écrit à la carte cID la valeur visible donnée
-                Air.Mite.Set(Clone1, facevalue);    // Setup custom facevalue = vraie valeur cachée
-                 }
-
+            Flipper(Clone1, 'p', facevalue);
             c2.Content = Air.Mite.Get(Clone1);  // charge dans c4 la valeur cachée de face
-            c1.Content = Flipped;   //charge dans clause la valeur de flipped = false
 
-            Flip(Clone1);// inverse l'état de clone, charge la vraie valeur de face sur la carte
         Flipped = Air.Flip.Get(Clone1);
-        c1.Content = Flipped;
             return Clone1;
         }
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+        private void Flipper (object toflip, char mode, int facevalue)
+        {
+            bool Flipped = Air.Flip.Get((Rectangle)toflip);
+            
 
+                if (mode == 'p')
+                {
+                    Air.Flip.Set((Rectangle)toflip, Flipped);
+                    Paint(facevalue, (Rectangle)toflip); //écrit à la carte cID la valeur visible donnée
+                    Air.Mite.Set((Rectangle)toflip, facevalue);
+                }
+
+
+                if (mode == 'f')
+            {
+                Air.Flip.Set((Rectangle)toflip, Flipped);
+                Paint(0, (Rectangle)toflip);
+            }
+
+
+        }
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
         private void Paint(int facevalue, Rectangle cID) //écrit à la carte cID la valeur visible donnée, passe l'objet rectangle directement
         {;
             Uri Carte = new Uri("pack://application:,,,/AirMite;component/" + facevalue + ".png", UriKind.RelativeOrAbsolute);
@@ -145,36 +159,22 @@ namespace AirMite
             cID.Height = 200;
             cID.Width = 140;    // WHY THE **FUCK** DOES RESIZING THE RECTANGLE HERE DOESN'T CAUSES THE WINDOW TO RESIZE ???
         }
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        private void Flip(Rectangle ID) //change la valeur visible de la carte vers celle de la valeur custom cachée
-        {
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-            int facevalue = Air.Mite.Get(ID);
-            bool FaceCachee = Air.Flip.Get(ID);
-            if (FaceCachee == true)                  // /!\ ATTENTION /!\ : false = face nombre visible; true = face cachée!!!
-            {
-                facevalue = 0;
-            }
-
-            Uri flip = new Uri("pack://application:,,,/AirMite;component/" + facevalue + ".png", UriKind.RelativeOrAbsolute);
-            BitmapImage CardFace = new BitmapImage(flip);
-            ID.Fill = new ImageBrush(CardFace);
-            FaceCachee = !FaceCachee;
-            c1.Content = FaceCachee;
-
-        }
         // En-dessous : code pour le mouvement (très buggé)
 
         void MaCarte_LostCursor(object sender, MouseEventArgs e)    //arrête la capture de mouvement de la souris si le curseur n'est plus visible
         {
             ((Rectangle)sender).ReleaseMouseCapture();
         }
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
         void MaCarte_TextInput(object sender, TextCompositionEventArgs e) //arrête la capture de mouvement de la souris si on tape du texte
         {
             ((Rectangle)sender).ReleaseMouseCapture();
         }
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
         void MaCarte_MouseUp(object sender, MouseButtonEventArgs e) // arrête la capture de mouvement de la souris si on relache le bouton de la souris
         {
             double ST = Canvas.GetTop((Rectangle)sender);
@@ -199,6 +199,11 @@ namespace AirMite
                     {
                         collision = false;
                     }
+                    else if(Air.Flip.Get(carte) && Air.Flip.Get((Rectangle)sender))
+                    {
+                        collision = true;
+                    }
+
 
                     if (collision)
                     {
@@ -212,16 +217,17 @@ namespace AirMite
                     {
                         ((Rectangle)sender).SetValue(Canvas.LeftProperty, CL);
                         ((Rectangle)sender).SetValue(Canvas.TopProperty, CT + 37);
-
+                        Air.Flip.Set(carte,true);
+                        Flipper(carte, 'f', 0);
                         collision = true;
-                    }
+                     }
                 }
             }
 
                  
             
         }
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
         void MaCarte_MouseMove(object sender, MouseEventArgs e) // changes variables accordingly if mouse moves
         {
             if (((Rectangle)sender).IsMouseCaptured)
@@ -251,6 +257,7 @@ namespace AirMite
             canvasTop = Canvas.GetTop(((Rectangle)sender));     // get top coordinates of clicked picture
             OldTop = canvasTop;
             ((Rectangle)sender).CaptureMouse();
+            Canvas.SetZIndex((Rectangle)sender, 3);
         }
 
         void Mute_Clicked(object sender, RoutedEventArgs e)
@@ -378,4 +385,21 @@ private void MovShp_MouseMove(object sender, MouseEventArgs e)
 
           }// Fin du code de mouvement
 
+
+        private void Flip(Rectangle ID) //change la valeur visible de la carte vers celle de la valeur custom cachée
+        {
+
+            int facevalue = Air.Mite.Get(ID);
+            bool FaceCachee = Air.Flip.Get(ID);
+            if (FaceCachee == true)                  // /!\ ATTENTION /!\ : false = face nombre visible; true = face cachée!!!
+            {
+                facevalue = 0;
+            }
+            Uri flip = new Uri("pack://application:,,,/AirMite;component/" + facevalue + ".png", UriKind.RelativeOrAbsolute);
+            BitmapImage CardFace = new BitmapImage(flip);
+            ID.Fill = new ImageBrush(CardFace);
+            FaceCachee = !FaceCachee;
+            c1.Content = FaceCachee;
+
+        }
 */
