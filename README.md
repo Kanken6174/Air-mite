@@ -9,3 +9,6 @@ Langage:
 
 ## Description
 L'air mite est un projet de solitaire pour s'initier à la POO, au C# et au XAML.
+
+## Menu WIP:
+https://github.com/Kanken6174/TremorV2
