@@ -104,7 +104,7 @@
                     <Viewport2DVisual3D.Material>
                         <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True">
                             <DiffuseMaterial.Brush>
-                                <ImageBrush ImageSource="0.png"/>
+                                <ImageBrush ImageSource="X.png"/>
 
                             </DiffuseMaterial.Brush>
                         </DiffuseMaterial>
@@ -122,12 +122,12 @@
                     <Viewport2DVisual3D.Material>
                         <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True">
                             <DiffuseMaterial.Brush>
-                                <ImageBrush ImageSource="0.png"/>
+                                <ImageBrush ImageSource="X.png"/>
 
                             </DiffuseMaterial.Brush>
                         </DiffuseMaterial>
                     </Viewport2DVisual3D.Material>
-                    <Button Width="100px" Height="70px" Background="White">
+                    <Button Width="100px" Height="70px" Background="White" Click="Start">
                         <StackPanel>
                             <Ellipse Height="40" Width="60" Fill="Blue"/>
                             <TextBlock TextAlignment="Center">Jouer</TextBlock>
@@ -150,7 +150,7 @@
                     <Viewport2DVisual3D.Material>
                         <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="False">
                             <DiffuseMaterial.Brush>
-                                <ImageBrush x:Name="CardBack1" ImageSource="0.png"/>
+                                <ImageBrush x:Name="CardBack1" ImageSource="X.png"/>
                             </DiffuseMaterial.Brush>
                         </DiffuseMaterial>
                     </Viewport2DVisual3D.Material>
@@ -184,7 +184,7 @@
                     <Viewport2DVisual3D.Material>
                         <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="False">
                             <DiffuseMaterial.Brush>
-                                <ImageBrush x:Name="CardBack3" ImageSource="X.png"/>
+                                <ImageBrush x:Name="CardBack3" ImageSource="0.png"/>
                             </DiffuseMaterial.Brush>
                         </DiffuseMaterial>
                     </Viewport2DVisual3D.Material>
@@ -201,7 +201,7 @@
                     <Viewport2DVisual3D.Material>
                         <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="False">
                             <DiffuseMaterial.Brush>
-                                <ImageBrush x:Name="CardBack4" ImageSource="X.png"/>
+                                <ImageBrush x:Name="CardBack4" ImageSource="0.png"/>
                             </DiffuseMaterial.Brush>
                         </DiffuseMaterial>
                     </Viewport2DVisual3D.Material>
@@ -218,7 +218,7 @@
                     <Viewport2DVisual3D.Material>
                         <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="False">
                             <DiffuseMaterial.Brush>
-                                <ImageBrush x:Name="CardBack6" ImageSource="X.png"/>
+                                <ImageBrush x:Name="CardBack6" ImageSource="0.png"/>
                             </DiffuseMaterial.Brush>
                         </DiffuseMaterial>
                     </Viewport2DVisual3D.Material>
@@ -235,7 +235,7 @@
                     <Viewport2DVisual3D.Material>
                         <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="False">
                             <DiffuseMaterial.Brush>
-                                <ImageBrush x:Name="CardBack7" ImageSource="X.png"/>
+                                <ImageBrush x:Name="CardBack7" ImageSource="0.png"/>
                             </DiffuseMaterial.Brush>
                         </DiffuseMaterial>
                     </Viewport2DVisual3D.Material>
@@ -253,7 +253,7 @@
                     <Viewport2DVisual3D.Material>
                         <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="False">
                             <DiffuseMaterial.Brush>
-                                <ImageBrush x:Name="CardBack8" ImageSource="X.png"/>
+                                <ImageBrush x:Name="CardBack8" ImageSource="0.png"/>
                             </DiffuseMaterial.Brush>
                         </DiffuseMaterial>
                     </Viewport2DVisual3D.Material>
@@ -270,7 +270,7 @@
                     <Viewport2DVisual3D.Material>
                         <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="False">
                             <DiffuseMaterial.Brush>
-                                <ImageBrush x:Name="CardBack9" ImageSource="X.png"/>
+                                <ImageBrush x:Name="CardBack9" ImageSource="0.png"/>
                             </DiffuseMaterial.Brush>
                         </DiffuseMaterial>
                     </Viewport2DVisual3D.Material>
@@ -290,7 +290,7 @@
                     <Viewport2DVisual3D.Material>
                         <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="False">
                             <DiffuseMaterial.Brush>
-                                <ImageBrush x:Name="CardBack10" ImageSource="X.png"/>
+                                <ImageBrush x:Name="CardBack10" ImageSource="0.png"/>
                             </DiffuseMaterial.Brush>
                         </DiffuseMaterial>
                     </Viewport2DVisual3D.Material>
@@ -307,7 +307,7 @@
                     <Viewport2DVisual3D.Material>
                         <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="False">
                             <DiffuseMaterial.Brush>
-                                <ImageBrush x:Name="CardBack11" ImageSource="X.png"/>
+                                <ImageBrush x:Name="CardBack11" ImageSource="0.png"/>
                             </DiffuseMaterial.Brush>
                         </DiffuseMaterial>
                     </Viewport2DVisual3D.Material>

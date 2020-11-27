@@ -129,6 +129,11 @@ namespace AirMite
             InAction = false;
         }
 
+        private void Start(object sender, RoutedEventArgs e)
+        {
+            ((App.Current as App).MainWindow as MainWindow).Content = new Playspace();
+        }
+
         private async Task TransformTo(double xr, double yr, double zr, int maxwait)
         {
             double x = Math.Ceiling(xr);
