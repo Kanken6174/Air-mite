@@ -6,58 +6,12 @@
         xmlns:local="clr-namespace:AirMite"
         mc:Ignorable="d"
         Title="L'AirMite" Height="720" Width="1280"
-        PreviewKeyDown="DebugRoutine"
         >
+    <Window.Background>
+        <ImageBrush ImageSource="table.jpg" Stretch="UniformToFill" />
+    </Window.Background>
 
-
-    <UserControl x:Name="GamePlate">
-
-        <Grid x:Name="mainGrid">
-            <Button x:Name="Mute" Margin="1157,591,49,27" Click="Mute_Clicked">
-
-            </Button>
-
-            <Button x:Name="Reset" Margin="1157,521,49,103" Click="Reset_clicked">
-                <Image Source="r0.png" Canvas.ZIndex="1"/>
-            </Button>
-
-            <Button x:Name="Piocher" Margin="1103,9,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="NvTirage" Width="155" Height="207">
-                <Image Source="0.png" Height="197" Width="145"/>
-            </Button>
-
-            <!--This part has become redundant because there are now invsible rectangles for checking for hits-->
-            <!--<Image x:Name="grappeB7" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="664" Canvas.Top="10" Margin="385,186,0,0"/>
-        <Image x:Name="grappeB8" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="664" Canvas.Top="10" Margin="135,186,0,0"/>
-        <Image x:Name="grappeB2" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="664" Canvas.Top="10" Margin="260,186,0,0"/>
-        <Image x:Name="grappeB3" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="789" Canvas.Top="10" Margin="510,186,0,0"/>
-        <Image x:Name="grappeB4" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="914" Canvas.Top="10" Margin="635,186,0,0"/>
-        <Image x:Name="grappeB5" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Canvas.Left="1039" Canvas.Top="10" Margin="760,186,0,0"/>
-        <Image x:Name="grappeB9" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" Source="0.png" Margin="10,186,0,0"/>-->
-
-            <Canvas x:Name="CanvasPrincipal" Background="Transparent" Margin="21,10,169,46" Panel.ZIndex="1" Visibility="Visible"/>
-
-            <Label x:Name="c1" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,503,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-            <Label x:Name="c2" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,534,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-            <Label x:Name="c3" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,565,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-            <Label x:Name="c4" Content="UNDEFINED" HorizontalAlignment="Left" Margin="710,596,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-            <Label x:Name="c5" Content="UNDEFINED" HorizontalAlignment="Left" Margin="462,596,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-            <Label x:Name="c6" Content="UNDEFINED" HorizontalAlignment="Left" Margin="462,565,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-            <Label x:Name="c7" Content="UNDEFINED" HorizontalAlignment="Left" Margin="462,534,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-            <Label x:Name="c8" Content="UNDEFINED" HorizontalAlignment="Left" Margin="462,503,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-
-            <!--  <Rectangle x:Name="hit1" Fill="Transparent" Margin="10,186,1142,10" Visibility="Visible"/>
-            <Rectangle x:Name="hit2" Fill="Transparent" Margin="135,186,1017,10" Visibility="Visible"/>
-            <Rectangle x:Name="hit3" Fill="Transparent" Margin="260,186,892,10" Visibility="Visible"/>
-            <Rectangle x:Name="hit4" Fill="Transparent" Margin="385,186,767,10" Visibility="Visible"/>
-            <Rectangle x:Name="hit5" Fill="Transparent" Margin="510,186,642,10" Visibility="Visible"/>
-            <Rectangle x:Name="hit6" Fill="Transparent" Margin="635,186,517,10" Visibility="Visible"/>
-            <Rectangle x:Name="hit7" Fill="Transparent" Margin="760,185,392,11" Visibility="Visible"/>
-    inutiles
-        <Rectangle x:Name="hit8" Fill="Transparent" Margin="10,26,1099,544" />-->
-
-
-        </Grid>
-
-
-    </UserControl>
+    <ContentControl x:Name="disp">
+        <local:Menu/>
+    </ContentControl>
 </Window>
