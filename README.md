@@ -5,7 +5,7 @@ Developper:
 
 Langage:
 - C# (pour la logique et les données)
-- XAML (pour les vue)
+- XAML (pour les vues)
 
 ## Description
 L'air mite est un projet de solitaire pour s'initier à la POO, au C# et au XAML.
